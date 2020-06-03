@@ -10,10 +10,19 @@ import SwiftUI
 
 protocol ApplicationCoordinatorDelegate {
     func showCurrentWeather(with city: String) -> AnyView
+    func destroyCurrentWeather()
 }
+
 
 final class ApplicationCoordinator: Coordinator, CoordinatorProtocol {
 
+    enum FlowScenes: CaseIterable {
+        case weekly
+        case current
+    }
+    
+    var stacks = [FlowScenes]()
+    
     override init() {
         super.init()
     }
@@ -23,20 +32,23 @@ final class ApplicationCoordinator: Coordinator, CoordinatorProtocol {
     }
 }
 
-//MARK: - Starting WeeklyView
+//MARK: - Starting
 private extension ApplicationCoordinator {
     func startingWeeklyWeather() -> some View {
-        WeeklyWeatherView(
+        self.stacks.append(.weekly)
+        return WeeklyWeatherView(
             viewModel: WeeklyWeatherViewModel(
                 weatherNetwork: self.networkProvider),
             coordinator: self)
     }
-}
-
-//MARK: - Starting CurrentView
-private extension ApplicationCoordinator {
+    
     func startingCurrentWeather(with city: String) -> some View {
-        CurrentWeatherView(viewModel: CurrentWeatherViewModel(city: city, weatherNetwork: networkProvider))
+        self.stacks.append(.current)
+        return CurrentWeatherView(
+            viewModel: CurrentWeatherViewModel(
+                city: city,
+                weatherNetwork: networkProvider),
+            coordinator: self)
     }
 }
 
@@ -48,6 +60,10 @@ private extension ApplicationCoordinator {
 }
 
 extension ApplicationCoordinator: ApplicationCoordinatorDelegate {
+    func destroyCurrentWeather() {
+        stacks.removeLast()
+    }
+    
     func showCurrentWeather(with city: String) -> AnyView {
         AnyView(startingCurrentWeather(with: city))
     }
@@ -56,8 +72,12 @@ extension ApplicationCoordinator: ApplicationCoordinatorDelegate {
 #if DEBUG
 
 class CoordinatorMock: ApplicationCoordinatorDelegate {
+    func destroyCurrentWeather() {
+        
+    }
+    
     func showCurrentWeather(with city: String) -> AnyView {
-        AnyView(CurrentWeatherView(viewModel: CurrentWeatherViewModel(city: "Mock City", weatherNetwork: WeatherNetwork())))
+        AnyView(CurrentWeatherView(viewModel: CurrentWeatherViewModel(city: "Mock City", weatherNetwork: WeatherNetwork()), coordinator: self))
     }
 }
 

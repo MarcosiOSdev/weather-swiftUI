@@ -11,10 +11,12 @@ import SwiftUI
 struct CurrentWeatherView: View {
     
     @ObservedObject var viewModel: CurrentWeatherViewModel
+    var coordinator: ApplicationCoordinatorDelegate
     
     var body: some View {
         List(content: content)
-            .onAppear(perform: viewModel.refresh)        
+            .onAppear(perform: viewModel.refresh)
+            .onDisappear(perform: coordinator.destroyCurrentWeather)
             .navigationBarTitle(viewModel.city)
     }
 }
