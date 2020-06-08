@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,13 +27,13 @@
 		28270DC124873967004D3074 /* CurrentWeatherForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DC024873967004D3074 /* CurrentWeatherForecastResponse.swift */; };
 		28270DC524873A1C004D3074 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DC424873A1C004D3074 /* Formatters.swift */; };
 		28270DC82487416F004D3074 /* Array+Filtering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DC72487416F004D3074 /* Array+Filtering.swift */; };
-		28270DCB248741AF004D3074 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DCA248741AF004D3074 /* Parsing.swift */; };
 		28270DCF24874613004D3074 /* DailyWeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DCE24874613004D3074 /* DailyWeatherRow.swift */; };
 		28270DD2248748E0004D3074 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DD1248748E0004D3074 /* CurrentWeatherView.swift */; };
 		28270DD624874900004D3074 /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DD524874900004D3074 /* CurrentWeatherViewModel.swift */; };
 		28270DD824874ABD004D3074 /* CurrentWeatherRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DD724874ABD004D3074 /* CurrentWeatherRowViewModel.swift */; };
 		28270DDA24874C68004D3074 /* CurrentWeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DD924874C68004D3074 /* CurrentWeatherRow.swift */; };
 		28270DDE24874CC1004D3074 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28270DDD24874CC1004D3074 /* MapView.swift */; };
+		2876F3FA248E96ED00367EF3 /* MFSwiftCommom in Frameworks */ = {isa = PBXBuildFile; productRef = 2876F3F9248E96ED00367EF3 /* MFSwiftCommom */; };
 		28B2D41E2487CF37005DAE5E /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2D41D2487CF37005DAE5E /* SearchBarView.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +81,6 @@
 		28270DC024873967004D3074 /* CurrentWeatherForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherForecastResponse.swift; sourceTree = "<group>"; };
 		28270DC424873A1C004D3074 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		28270DC72487416F004D3074 /* Array+Filtering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Filtering.swift"; sourceTree = "<group>"; };
-		28270DCA248741AF004D3074 /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
 		28270DCE24874613004D3074 /* DailyWeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherRow.swift; sourceTree = "<group>"; };
 		28270DD1248748E0004D3074 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
 		28270DD524874900004D3074 /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2876F3FA248E96ED00367EF3 /* MFSwiftCommom in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +274,6 @@
 			children = (
 				28B2D41C2487CF2A005DAE5E /* View */,
 				28270DDB24874CA7004D3074 /* ViewRepresentable */,
-				28270DC9248741A2004D3074 /* Network */,
 				28270DC624874155004D3074 /* ArrayExtensions */,
 				28270DC324873A10004D3074 /* Formatter */,
 			);
@@ -295,14 +294,6 @@
 				28270DC72487416F004D3074 /* Array+Filtering.swift */,
 			);
 			path = ArrayExtensions;
-			sourceTree = "<group>";
-		};
-		28270DC9248741A2004D3074 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				28270DCA248741AF004D3074 /* Parsing.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		28270DD0248748D3004D3074 /* CurrentWeather */ = {
@@ -372,6 +363,9 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+				2876F3F9248E96ED00367EF3 /* MFSwiftCommom */,
+			);
 			productName = WeatherApp;
 			productReference = 28270D6E24872D34004D3074 /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -444,6 +438,9 @@
 				Base,
 			);
 			mainGroup = 28270D6524872D34004D3074;
+			packageReferences = (
+				2876F3F8248E96ED00367EF3 /* XCRemoteSwiftPackageReference "MFSwiftCommom" */,
+			);
 			productRefGroup = 28270D6F24872D34004D3074 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -504,7 +501,6 @@
 				28270DBA24873327004D3074 /* DailyWeatherRowViewModel.swift in Sources */,
 				28270DBF248733AF004D3074 /* WeatherError.swift in Sources */,
 				28270DBD24873386004D3074 /* WeeklyForecastResponse.swift in Sources */,
-				28270DCB248741AF004D3074 /* Parsing.swift in Sources */,
 				28270DD624874900004D3074 /* CurrentWeatherViewModel.swift in Sources */,
 				28270DA924872E51004D3074 /* Coordinator.swift in Sources */,
 				28270DDA24874C68004D3074 /* CurrentWeatherRow.swift in Sources */,
@@ -834,6 +830,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2876F3F8248E96ED00367EF3 /* XCRemoteSwiftPackageReference "MFSwiftCommom" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MarcosiOSdev/MFSwiftCommom.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2876F3F9248E96ED00367EF3 /* MFSwiftCommom */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2876F3F8248E96ED00367EF3 /* XCRemoteSwiftPackageReference "MFSwiftCommom" */;
+			productName = MFSwiftCommom;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28270D6624872D34004D3074 /* Project object */;
 }
