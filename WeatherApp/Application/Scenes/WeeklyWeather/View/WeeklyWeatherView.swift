@@ -36,9 +36,9 @@ struct WeeklyWeatherView: View {
 }
 
 private extension WeeklyWeatherView {
-    var searchField: some View {
+    var searchField: some View {        
         HStack(alignment: .center) {
-            TextField("Searching", text: $viewModel.city)
+            SearchBar(text: $viewModel.city)
         }
     }
     
