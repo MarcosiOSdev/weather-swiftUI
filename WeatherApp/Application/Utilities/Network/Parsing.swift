@@ -9,13 +9,17 @@
 import Foundation
 import Combine
 
-func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, WeatherError> {
+enum DecodeError: Error {
+    case parsing(description: String)
+}
+
+func decode<Model: Decodable>(_ data: Data) -> AnyPublisher<Model, DecodeError> {
   let decoder = JSONDecoder()
   decoder.dateDecodingStrategy = .secondsSince1970
   
   return Just(data)
-    .decode(type: T.self, decoder: decoder)
+    .decode(type: Model.self, decoder: decoder)
     .mapError { error in
-      WeatherError.parsing(description: error.localizedDescription)
+      DecodeError.parsing(description: error.localizedDescription)
   }.eraseToAnyPublisher()
 }

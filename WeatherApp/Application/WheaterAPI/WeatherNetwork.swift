@@ -115,7 +115,12 @@ extension WeatherNetwork {
           WeatherError.network(description: error.localizedDescription)
         }
         .flatMap(maxPublishers: .max(1)) { pair in
-          decode(pair.data)
+            decode(pair.data).mapError { decodeError in
+                if case let DecodeError.parsing(description: description) = decodeError {
+                    return WeatherError.parsing(description: description)
+                }
+                return WeatherError.parsing(description: "Not identified")
+            }
         }
         .eraseToAnyPublisher()
     }

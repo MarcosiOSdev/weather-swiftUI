@@ -20,7 +20,7 @@ class WeatherAppTests: XCTestCase {
     }
 
     func testExample() throws {
-        XCTAssertTrue(false) // Just Test Bitrise
+        XCTAssertTrue(true) // Just Test Bitrise
     }
 
     func testPerformanceExample() throws {
